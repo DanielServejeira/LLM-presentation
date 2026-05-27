@@ -1,6 +1,6 @@
 # Overview
 
-This repository contains the LaTeX source code and slides for the presentation "Large Language Models," developed by João Gabriel de Morais Bezerra (@joaobezcerra) and Daniel Henrique Peres Servejeira (@DanielServejeira) for the Numerical Simulations and Artificial Intelligence Laboratory. The material was created for a Qualification Exam and offers a deep conceptual and mathematical overview of how modern generative artificial intelligence works.
+This repository contains the LaTeX source code and slides for the presentation "Large Language Models," developed by João Gabriel de Morais Bezerra (@joaobezcerra) and Daniel Henrique Peres Servejeira (@DanielServejeira). The material was created for a presentation at SECOMPP (a computing event held at São Paulo State University - Unesp) and offers a deep conceptual and mathematical overview of how modern generative artificial intelligence works.
 
 The main topics explored in the presentation include:
 - **Neural Network Architectures**: A comparison between models based on Decoders, Encoders, and hybrid Encoder-Decoders.
