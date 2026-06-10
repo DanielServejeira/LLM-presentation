@@ -1,8 +1,0 @@
-\babel@toc {english}{}\relax 
-\beamer@sectionintoc {1}{Intro.}{2}{0}{1}
-\beamer@sectionintoc {2}{Cond. Generation}{7}{0}{2}
-\beamer@sectionintoc {3}{Decod. and Sampling Alg.}{15}{0}{3}
-\beamer@sectionintoc {4}{Pretrain. Alg. and Data}{26}{0}{4}
-\beamer@sectionintoc {5}{Data Eng. and Fine-Tuning}{33}{0}{5}
-\beamer@sectionintoc {6}{Evaluation, Scaling Laws, and Hard. Optim.}{40}{0}{6}
-\beamer@sectionintoc {7}{References}{60}{0}{7}

@@ -1,8 +1,0 @@
-\babel@toc {brazil}{}\relax 
-\beamer@sectionintoc {1}{Introdução}{2}{0}{1}
-\beamer@sectionintoc {2}{Ger. Condicional}{7}{0}{2}
-\beamer@sectionintoc {3}{Alg. de Dec. e Amostragem}{15}{0}{3}
-\beamer@sectionintoc {4}{Alg. de Pré-trein. e Dados}{25}{0}{4}
-\beamer@sectionintoc {5}{Eng. de Dados e Aj. Fino}{32}{0}{5}
-\beamer@sectionintoc {6}{Ava., Leis de Escala e Otimização}{37}{0}{6}
-\beamer@sectionintoc {7}{Danos e Referências}{45}{0}{7}
