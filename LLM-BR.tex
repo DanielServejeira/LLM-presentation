@@ -307,6 +307,21 @@
     Kyle Waring enviará a você cerca de 3 quilos de neve da área de Boston em uma caixa isolada, o suficiente para 10 a 15 bolas de neve, diz ele. Mas não se você mora na Nova Inglaterra ou nos estados vizinhos. Ele brincou sobre enviar o material para amigos e familiares em estados mais quentes, e assim nasceu uma ideia.
 \end{frame}
 
+\begin{frame}
+    \textbf{Executando compressão usando o delimitador "Too long; didn’t read".}
+    \vspace{0.3cm}
+    \begin{figure}[htbp]
+      \centering
+      \framebox{\parbox{0.5\textwidth}{\centering
+        \vspace{0.8cm}
+        \textbf{Espaço para Imagem.} \\
+        \small\textit{Inserir o diagrama de compressão.}
+        \vspace{0.8cm}
+      }}
+    \end{figure}
+    \vspace{2.5cm}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Alg. de Dec. e Amostragem}
 
@@ -485,16 +500,19 @@ while w_i!= EOS:
 \end{frame}
 
 \begin{frame}{Treinando um modelo de linguagem transformer}\justifying
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.8\textwidth}{\centering
-        \vspace{1.5cm}
-        \textbf{Espaço para Imagem (Treinamento do Transformer)} \\
-        \small\textit{Insira o diagrama do fluxo de treinamento aqui.}
-        \vspace{1.5cm}
-      }}
-    \end{figure}
-    \[ \text{Perda Total do Lote} = \frac{1}{T} \sum_{t=1}^{T} L_{CE} \]
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.9\linewidth]{pic/transformer_language_model_scheme.png}
+                \caption{Esquema de treinamento de um modelo de linguagem Transformer.}
+                \label{fig:transformer_language_model_scheme}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \[ \text{Perda Total do Lote} = \frac{1}{T} \sum_{t=1}^{T} L_{CE} \]
+        \end{column}
+    \end{columns}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -545,8 +563,25 @@ while w_i!= EOS:
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Ajuste fino}\justifying
+    \begin{figure}
+        \centering
+        \includegraphics[width=\linewidth]{pic/finetuning.png}
+        \caption{Finetuning flow}
+        \label{fig:finetuning_flow}
+    \end{figure}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ava., Leis de Escala e Otimização}
+
+\begin{frame}{Avaliando Grandes Modelos de Linguagem}
+    \begin{center}
+        \huge \textbf{Avaliando Grandes Modelos de Linguagem}\\
+        \vspace{0.5cm}
+        \Large Métricas e Infraestrutura de Escala.
+    \end{center}
+\end{frame}
 
 \begin{frame}{Métrica de Perplexidade}\justifying
     A indústria usa a Perplexidade para medir matematicamente quão bem o LM prevê distribuições de texto não vistas. \\
@@ -594,14 +629,14 @@ while w_i!= EOS:
         \item O cálculo exige vetores chave e valor para todos os tokens anteriores $x_{<i}$, gerando um custo computacional $O(N^2)$.
         \item \textbf{A Solução de Engenharia:} Armazene os vetores na memória VRAM da GPU no cache KV, para uso com velocidade de inferência $O(N)$.
     \end{itemize}
-    \vspace{0.2cm}
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.5\textwidth}{\centering
-        \vspace{0.5cm}
-        \textbf{Espaço para Imagem do Cache KV}
-        \vspace{0.5cm}
-      }}
+\end{frame}
+
+\begin{frame}{Arquitetura do Cache KV}\justifying
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{pic/kv_cache.png}
+        \caption{Representação do cache KV.}
+        \label{fig:kv_cache_representation}
     \end{figure}
 \end{frame}
 
@@ -622,12 +657,87 @@ while w_i!= EOS:
 
 \begin{frame}{Danos Sociais dos Grandes Modelos de Linguagem}\justifying
     \begin{itemize}
-        \item \textbf{Alucinação:} Chatbots rotineiramente 'alucinam' políticas corporativas falsas ou fatos inexistentes.
-        \item \textbf{Litígio de Direitos Autorais:} Ações judiciais por infração massiva no uso de obras protegidas durante o treinamento sem permissão.
-        \item \textbf{Violações de Privacidade:} Vazamento acidental de e-mails e números de telefone privados extraídos dos dados de treinamento.
-        \item \textbf{Toxicidade e Exploração:} O processo de limpeza dos dados muitas vezes exige que humanos avaliem conteúdos tóxicos.
-        \item \textbf{Desinformação Política:} Geração de falsidades altamente persuasivas que podem afetar cenários globais e eleições.
+        \item \textbf{Alucinação}
+        \item \textbf{Litígio de Direitos Autorais}
+        \item \textbf{Violações de Privacidade}
+        \item \textbf{Toxicidade e Exploração}
+        \item \textbf{Desinformação Política}
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Alucinação}
+    Chatbots rotineiramente 'alucinam' políticas corporativas falsas ou fatos inexistentes.
+    \vspace{0.5cm}
+    
+    \begin{figure}[htbp]
+      \centering
+      \framebox{\parbox{0.6\textwidth}{\centering
+        \vspace{1cm}
+        \textbf{Espaço para Imagem} \\
+        \small\textit{Insira a imagem das notícias de alucinação aqui.}
+        \vspace{1cm}
+      }}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Litígio de Direitos Autorais}
+    Ações judiciais por infração massiva no uso de obras protegidas durante o treinamento sem permissão.
+    \vspace{0.5cm}
+    
+    \begin{figure}[htbp]
+      \centering
+      \framebox{\parbox{0.6\textwidth}{\centering
+        \vspace{1cm}
+        \textbf{Espaço para Imagem} \\
+        \small\textit{Insira a imagem das notícias de litígio de direitos autorais aqui.}
+        \vspace{1cm}
+      }}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Violações de Privacidade}
+    Vazamento acidental de e-mails e números de telefone privados extraídos dos dados de treinamento.
+    \vspace{0.5cm}
+    
+    \begin{figure}[htbp]
+      \centering
+      \framebox{\parbox{0.6\textwidth}{\centering
+        \vspace{1cm}
+        \textbf{Espaço para Imagem} \\
+        \small\textit{Insira a imagem das notícias de violações de privacidade aqui.}
+        \vspace{1cm}
+      }}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Toxicidade e Exploração}
+    O processo de limpeza dos dados muitas vezes exige que humanos avaliem conteúdos tóxicos.
+    \vspace{0.5cm}
+    
+    \begin{figure}[htbp]
+      \centering
+      \framebox{\parbox{0.6\textwidth}{\centering
+        \vspace{1cm}
+        \textbf{Espaço para Imagem} \\
+        \small\textit{Insira a imagem das notícias de toxicidade e exploração aqui.}
+        \vspace{1cm}
+      }}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Desinformação Política}
+    Geração de falsidades altamente persuasivas que podem afetar cenários globais e eleições.
+    \vspace{0.5cm}
+    
+    \begin{figure}[htbp]
+      \centering
+      \framebox{\parbox{0.6\textwidth}{\centering
+        \vspace{1cm}
+        \textbf{Espaço para Imagem} \\
+        \small\textit{Insira a imagem das notícias de desinformação política aqui.}
+        \vspace{1cm}
+      }}
+    \end{figure}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Referências Bibliográficas}\justifying
