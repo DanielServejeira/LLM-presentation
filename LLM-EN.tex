@@ -155,7 +155,7 @@
 \end{frame}
 
 \begin{frame}{Three architectures for large language models}\justifying
-    \begin{columns}
+    \begin{columns}[t]
         \begin{column}{0.33\textwidth}
             \textbf{Decoders}
             \begin{itemize}
@@ -164,47 +164,43 @@
                 \item Llama
                 \item Mixtral
             \end{itemize}
-
-            \begin{figure}
-                \centering
-                \includegraphics[width=\linewidth]{pic/Logo.png}
-                \caption{Decoder scheme}
-                \label{fig:decoder_scheme}
-            \end{figure}
         \end{column}
+
         \begin{column}{0.33\textwidth}
             \textbf{Encoders}
             \begin{itemize}
                 \item BERT family
                 \item HUBERT
             \end{itemize}
-
-            \begin{figure}
-                \centering
-                \includegraphics[width=\linewidth]{pic/Logo.png}
-                \caption{Encoder scheme}
-                \label{fig:encoder_scheme}
-            \end{figure}
         \end{column}
+
         \begin{column}{0.33\textwidth}
             \textbf{Encoder-decoders}
             \begin{itemize}
                 \item Flan-T5
                 \item Whisper
             \end{itemize}
-
-            \begin{figure}
-                \centering
-                \includegraphics[width=\linewidth]{pic/Logo.png}
-                \caption{Encoder-decoder scheme}
-                \label{fig:encoder-decoder_scheme}
-            \end{figure}
         \end{column}
     \end{columns}
-    \vspace{0.8cm}
-    \centering
-    \textit{}
-    \vspace{2.5cm}
+
+    \vspace{0.5cm}
+
+    \begin{columns}[c]
+        \begin{column}{0.33\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{pic/decoders.jpeg}
+        \end{column}
+
+        \begin{column}{0.33\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{pic/encoders.jpeg}
+        \end{column}
+
+        \begin{column}{0.33\textwidth}
+            \centering
+            \includegraphics[width=0.7\linewidth]{pic/encoders-decoders.jpeg}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Encoders}\justifying
@@ -214,6 +210,11 @@
         \item Trained by predicting words that have been artificially masked from the surrounding context on both the left and the right sides.
         \item Because they are bidirectional, they are usually finetuned (trained on supervised data) exclusively for classification and extraction tasks rather than generation.
     \end{itemize}
+    \vspace{0.3cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\linewidth]{pic/encoders.jpeg}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Encoder-Decoders}\justifying
@@ -224,9 +225,11 @@
         \item Machine translation (mapping a sentence from one language entirely into another language)
         \item Speech recognition (mapping raw audio acoustics into written words)
     \end{itemize}
-    \vspace{0.5cm}
-    \centering
-    \textit{}
+    \vspace{0.3cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\linewidth]{pic/encoders-decoders.jpeg}
+    \end{figure}
     \vspace{2.5cm}
 \end{frame}
 
@@ -263,7 +266,7 @@
     
     \begin{figure}
         \centering
-        \includegraphics[width=\linewidth]{pic/Logo.png}
+        \includegraphics[width=0.6\linewidth]{pic/conditional-generation.png}
         \caption{Text prediction scheme}
         \label{fig:text_prediction_scheme}
     \end{figure}
@@ -310,7 +313,7 @@
     \vspace{0.5cm}
     \begin{figure}
         \centering
-        \includegraphics[width=\linewidth]{pic/Logo.png}
+        \includegraphics[width=0.7\linewidth]{pic/summarization.png}
         \caption{Text summarization scheme}
         \label{fig:text_summarization_scheme}
     \end{figure}
@@ -575,7 +578,7 @@ while w_i!= EOS:
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Finetuning}
+\begin{frame}{Finetuning}\justifying
     \begin{figure}
         \centering
         \includegraphics[width=\linewidth]{pic/finetuning.png}
@@ -749,22 +752,52 @@ while w_i!= EOS:
 
 \begin{frame}{Hallucination}
     Chatbots routinely 'hallucinate' fake corporate policies or non-existent facts. Individuals currently possess little protection or legal recourse when the technology autonomously creates and spreads falsehoods about them.
+    \vspace{0.5cm}
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.5\linewidth]{pic/hallucination.jpeg}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Copyright Litigation}
     Authors and media conglomerates are actively suing corporations, claiming mass copyright infringement regarding the hundreds of thousands of novels and news articles utilized without permission during training.
+    \vspace{0.5cm}
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.5\linewidth]{pic/copyright-litigation.jpeg}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Privacy Breaches}
     The models have demonstrated the ability to leak private email addresses and phone numbers extracted from the training data.
+    \vspace{0.5cm}
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.6\linewidth]{pic/privacy-breaches.jpeg}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Toxicity and Exploitation}
     Chatbots threaten users, while cleaning up the training data exacts a horrific psychological toll on human contractors forced to read descriptions of violence and abuse.
+    \vspace{0.5cm}
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.6\linewidth]{pic/toxicity-and-exploitation.jpeg}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Political Misinformation}
     The generation of highly persuasive false and misleading information regarding global elections.
+    \vspace{0.5cm}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{pic/political-misinformation.jpeg}
+    \end{figure}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
