@@ -156,42 +156,52 @@
 \end{frame}
 
 \begin{frame}{Três arquiteturas para grandes modelos de linguagem}\justifying
-    \begin{columns}
+    \begin{columns}[t]
         \begin{column}{0.33\textwidth}
             \textbf{Decodificadores}
             \begin{itemize}
-                \item Série GPT
+                \item GPT Series
                 \item Claude
                 \item Llama
                 \item Mixtral
             \end{itemize}
         \end{column}
+
         \begin{column}{0.33\textwidth}
             \textbf{Codificadores}
             \begin{itemize}
-                \item Família BERT
+                \item BERT family
                 \item HUBERT
             \end{itemize}
         \end{column}
+
         \begin{column}{0.33\textwidth}
-            \textbf{Codificadores-decodificadores}
+            \textbf{Codificadores-Decodificadores}
             \begin{itemize}
                 \item Flan-T5
                 \item Whisper
             \end{itemize}
         \end{column}
     \end{columns}
+
     \vspace{0.5cm}
-    
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.6\textwidth}{\centering
-        \vspace{1cm}
-        \textbf{Espaço para Imagem (Arquiteturas)} \\
-        \small\textit{Insira o diagrama das arquiteturas aqui.}
-        \vspace{1cm}
-      }}
-    \end{figure}
+
+    \begin{columns}[c]
+        \begin{column}{0.33\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{pic/decoders.jpeg}
+        \end{column}
+
+        \begin{column}{0.33\textwidth}
+            \centering
+            \includegraphics[width=0.5\linewidth]{pic/encoders.jpeg}
+        \end{column}
+
+        \begin{column}{0.33\textwidth}
+            \centering
+            \includegraphics[width=0.7\linewidth]{pic/encoders-decoders.jpeg}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Codificadores}\justifying
@@ -201,15 +211,11 @@
         \item Treinados prevendo palavras que foram artificialmente mascaradas do contexto ao redor em ambos os lados, esquerdo e direito.
         \item Por serem bidirecionais, eles geralmente passam por um ajuste fino (treinados em dados supervisionados) exclusivamente para tarefas de classificação e extração em vez de geração.
     \end{itemize}
-    \vspace{0.3cm}
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.5\textwidth}{\centering
-        \vspace{0.8cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira o diagrama de Codificadores.}
-        \vspace{0.8cm}
-      }}
+    \vspace{0.2cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\linewidth]{pic/encoders.jpeg}
+        \label{fig:encoders}
     \end{figure}
 \end{frame}
 
@@ -222,14 +228,10 @@
         \item Reconhecimento de fala (mapear acústica de áudio bruto em palavras escritas)
     \end{itemize}
     \vspace{0.3cm}
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.5\textwidth}{\centering
-        \vspace{0.8cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira o diagrama Encoder-Decoder.}
-        \vspace{0.8cm}
-      }}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.3\linewidth]{pic/encoders-decoders.jpeg}
+        \label{fig:encoders-decoders}
     \end{figure}
 \end{frame}
 
@@ -263,14 +265,11 @@
     \textbf{Gerando texto logicamente condicionado ao texto anterior!}
     
     \vspace{0.5cm}
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.8\textwidth}{\centering
-        \vspace{1.5cm}
-        \textbf{Espaço para Imagem (Geração Condicional)} \\
-        \small\textit{Insira a imagem ilustrativa aqui.}
-        \vspace{1.5cm}
-      }}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{pic/conditional-generation.png}
+        \caption{Esquema de previsão de texto.}
+        \label{fig:esquema_previsao_texto}
     \end{figure}
 \end{frame}
 
@@ -307,17 +306,14 @@
     Kyle Waring enviará a você cerca de 3 quilos de neve da área de Boston em uma caixa isolada, o suficiente para 10 a 15 bolas de neve, diz ele. Mas não se você mora na Nova Inglaterra ou nos estados vizinhos. Ele brincou sobre enviar o material para amigos e familiares em estados mais quentes, e assim nasceu uma ideia.
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Sumarização de texto}\justifying
     \textbf{Executando compressão usando o delimitador "Too long; didn’t read".}
-    \vspace{0.3cm}
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.5\textwidth}{\centering
-        \vspace{0.8cm}
-        \textbf{Espaço para Imagem.} \\
-        \small\textit{Inserir o diagrama de compressão.}
-        \vspace{0.8cm}
-      }}
+    \vspace{0.5cm}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/summarization.png}
+        \caption{Esquema de resumo de texto.}
+        \label{fig:esquema_resumo_texto}
     \end{figure}
     \vspace{2.5cm}
 \end{frame}
@@ -669,14 +665,9 @@ while w_i!= EOS:
     Chatbots rotineiramente 'alucinam' políticas corporativas falsas ou fatos inexistentes.
     \vspace{0.5cm}
     
-    \begin{figure}[htbp]
+    \begin{figure}
       \centering
-      \framebox{\parbox{0.6\textwidth}{\centering
-        \vspace{1cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira a imagem das notícias de alucinação aqui.}
-        \vspace{1cm}
-      }}
+      \includegraphics[width=0.5\linewidth]{pic/hallucination.jpeg}
     \end{figure}
 \end{frame}
 
@@ -684,14 +675,9 @@ while w_i!= EOS:
     Ações judiciais por infração massiva no uso de obras protegidas durante o treinamento sem permissão.
     \vspace{0.5cm}
     
-    \begin{figure}[htbp]
+    \begin{figure}
       \centering
-      \framebox{\parbox{0.6\textwidth}{\centering
-        \vspace{1cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira a imagem das notícias de litígio de direitos autorais aqui.}
-        \vspace{1cm}
-      }}
+      \includegraphics[width=0.5\linewidth]{pic/copyright-litigation.jpeg}
     \end{figure}
 \end{frame}
 
@@ -699,14 +685,9 @@ while w_i!= EOS:
     Vazamento acidental de e-mails e números de telefone privados extraídos dos dados de treinamento.
     \vspace{0.5cm}
     
-    \begin{figure}[htbp]
+    \begin{figure}
       \centering
-      \framebox{\parbox{0.6\textwidth}{\centering
-        \vspace{1cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira a imagem das notícias de violações de privacidade aqui.}
-        \vspace{1cm}
-      }}
+      \includegraphics[width=0.6\linewidth]{pic/privacy-breaches.jpeg}
     \end{figure}
 \end{frame}
 
@@ -714,14 +695,9 @@ while w_i!= EOS:
     O processo de limpeza dos dados muitas vezes exige que humanos avaliem conteúdos tóxicos.
     \vspace{0.5cm}
     
-    \begin{figure}[htbp]
+    \begin{figure}
       \centering
-      \framebox{\parbox{0.6\textwidth}{\centering
-        \vspace{1cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira a imagem das notícias de toxicidade e exploração aqui.}
-        \vspace{1cm}
-      }}
+      \includegraphics[width=0.6\linewidth]{pic/toxicity-and-exploitation.jpeg}
     \end{figure}
 \end{frame}
 
@@ -729,14 +705,9 @@ while w_i!= EOS:
     Geração de falsidades altamente persuasivas que podem afetar cenários globais e eleições.
     \vspace{0.5cm}
     
-    \begin{figure}[htbp]
-      \centering
-      \framebox{\parbox{0.6\textwidth}{\centering
-        \vspace{1cm}
-        \textbf{Espaço para Imagem} \\
-        \small\textit{Insira a imagem das notícias de desinformação política aqui.}
-        \vspace{1cm}
-      }}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{pic/political-misinformation.jpeg}
     \end{figure}
 \end{frame}
 
