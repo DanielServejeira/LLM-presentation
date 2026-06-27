@@ -400,7 +400,7 @@ while w_i!= EOS:
     \raggedleft \textit{(Holtzman et al., 2020)}
 \end{frame}
 
-\begin{frame}{Amostragem por temperatura (1/3)}\justifying
+\begin{frame}{Amostragem por temperatura (1/4)}\justifying
     Em vez de truncar o vocabulário, podemos remodelar matematicamente toda a distribuição. Esse conceito extrai intuição da termodinâmica:
     \begin{itemize}
         \item Um sistema físico existente a uma temperatura alta é altamente flexível, energético e pode explorar muitos estados variantes possíveis.
@@ -413,21 +413,23 @@ while w_i!= EOS:
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Amostragem por temperatura (2/3)}\justifying
+\begin{frame}{Amostragem por temperatura (2/4)}\justifying
     \begin{itemize}
         \item \textbf{t = 0.1 a 0.3 (Variância Muito Baixa):} Excepcional para executar código de programação, equações matemáticas, traduções estritas ou responder a consultas factuais onde se deseja precisão absoluta e nenhum desvio criativo. O modelo quase sempre escolherá de forma gananciosa a palavra mais lógica.
         \item \textbf{t = 0.7 a 1.0 (Variância Normal/Alta):} Ideal para escrever poesia, sessões de brainstorming ou gerar histórias narrativas, pois a distribuição matemática permite que o modelo arrisque selecionar palavras menos óbvias, gerando uma saída textual muito mais diversa e "criativa".
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Amostragem por temperatura (3/3)}\justifying
+\begin{frame}{Amostragem por temperatura (3/4)}\justifying
     Matematicamente, dividimos o logit bruto $u$ por um parâmetro de temperatura $\tau$ antes de passá-lo pela camada final de ativação softmax. \\
     \vspace{0.5cm}
     Em vez do cálculo padrão:
     \[ y = \text{softmax}(u) \]
     Calculamos a variante escalonada:
     \[ y = \text{softmax}\left(\frac{u}{\tau}\right) \]
-    
+\end{frame}
+
+\begin{frame}{Amostragem por temperatura (4/4)}\justifying 
     \vspace{0.3cm}
     \textbf{Por que esse ajuste estrutural funciona?}
     \begin{itemize}
