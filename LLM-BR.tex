@@ -458,7 +458,7 @@ while w_i!= EOS:
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Algoritmo de treinamento autossupervisionado}\justifying
+\begin{frame}{Algoritmo de treinamento auto-supervisionado}\justifying
     \textbf{Nós fundamentalmente apenas os treinamos para prever a próxima palavra!} \\
     Pegue um corpus massivo de texto. A cada passo de tempo computacional $t$...
     \begin{enumerate}
@@ -466,7 +466,7 @@ while w_i!= EOS:
         \item Treine o modelo utilizando a retropropagação (backpropagation) do erro e a descida do gradiente para minimizar o erro matemático nesta previsão.
     \end{enumerate}
     \vspace{0.5cm}
-    Esse paradigma é classificado como aprendizado \textbf{"Autossupervisionado"} porque não requer anotadores humanos; ele simplesmente utiliza a próxima palavra natural no texto como o rótulo definitivo de verdade de base (ground-truth)!
+    Esse paradigma é classificado como aprendizado \textbf{"Auto-supervisionado"} porque não requer anotadores humanos; ele simplesmente utiliza a próxima palavra natural no texto como o rótulo definitivo de verdade de base (ground-truth)!
 \end{frame}
 
 \begin{frame}{Intuição do treinamento do modelo de linguagem: Perda}\justifying
