@@ -1,3 +1,4 @@
+# LaTeX intermediate files
 *.aux
 *.fdb_latexmk
 *.fls
@@ -9,3 +10,24 @@
 *.synctex(busy)
 *.toc
 *.vrb
+
+# Jupyter Notebook
+.ipynb_checkpoints
+env
+devign
+output
+defects4j
+.DS_Store
+mcp-example/env
+mcp-example/defects4j
+.vscode
+
+# Python
+.DS_Store
+__pycache__
+env/
+logs/
+metagpt/
+logs_tdd/
+logs_refactor/
+logs_userstories/
