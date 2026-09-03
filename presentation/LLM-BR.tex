@@ -429,6 +429,112 @@ while w_i!= EOS:
     \[ y = \text{softmax}\left(\frac{u}{\tau}\right) \]
 \end{frame}
 
+\begin{frame}{O que significa \textit{logit}?}\justifying
+    O termo \textbf{logit} vem da estatística e originalmente está
+    relacionado ao \textbf{logaritmo das odds}.
+
+    \vspace{0.3cm}
+
+    As \textbf{odds} representam a razão entre a probabilidade de um
+    evento ocorrer e a probabilidade de ele não ocorrer:
+
+    \[
+        \operatorname{odds}(p)=\frac{p}{1-p}
+    \]
+
+    Portanto, o \textit{logit} é definido como:
+
+    \[
+        \boxed{
+            \operatorname{logit}(p)
+            =\ln\left(\frac{p}{1-p}\right)
+        }
+    \]
+
+    \vspace{0.3cm}
+
+    No caso binário, essa transformação é a \textbf{inversa da
+    função sigmoide}:
+
+    \[
+        p=\sigma(z)
+        \qquad\Longleftrightarrow\qquad
+        z=\operatorname{logit}(p)
+    \]
+
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{pic/neural_network.png}
+        \caption{Rede Neural Feedforward}
+        \label{fig:transformer_language_model_scheme}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{Derivando o \textit{logit}}\justifying
+    Partimos da função de ativação sigmoide:
+
+    \[
+        p = \sigma(z) = \frac{1}{1+e^{-z}}
+    \]
+
+    \vspace{0.2cm}
+
+    Isolando $z$:
+
+    \[
+        \begin{aligned}
+            p(1+e^{-z}) &= 1 \\
+            p + p e^{-z} &= 1 \\
+            -z &= \ln\left(\frac{1-p}{p}\right) \\
+            z &= \ln\left(\frac{p}{1-p}\right)
+        \end{aligned}
+    \]
+\end{frame}
+
+
+\begin{frame}{\textit{Logits} em modelos multiclasses}\justifying
+
+    Ao passar de duas classes para várias classes, utilizamos a
+    função \textbf{softmax}:
+
+    \[
+        p_i=
+        \frac{e^{z_i}}{\sum_j e^{z_j}}
+    \]
+
+    Os valores $z_i$ produzidos pelo modelo são chamados de
+    \textbf{logits}.
+
+    \vspace{0.3cm}
+
+    Diferentemente do caso binário, cada $z_i$ \textbf{não é,
+    individualmente, o logaritmo das odds}:
+
+    \[
+        z_i \neq
+        \ln\left(\frac{p_i}{1-p_i}\right)
+    \]
+
+    O que podemos obter é a diferença entre dois logits:
+
+    \[
+        \boxed{
+            z_i-z_j=
+            \ln\left(\frac{p_i}{p_j}\right)
+        }
+    \]
+
+    \vspace{0.2cm}
+
+    Nas LLMs, o termo \textit{logit} é utilizado para esses
+    \textbf{scores brutos antes do softmax}.
+
+\end{frame}
+
 \begin{frame}{Amostragem por temperatura (4/4)}\justifying 
     \vspace{0.3cm}
     \textbf{Por que esse ajuste estrutural funciona?}
@@ -437,6 +543,54 @@ while w_i!= EOS:
         \item Quanto menor o $\tau$, maiores serão as pontuações diferenciais passadas para o softmax. O softmax empurra inerentemente valores altos para 1 e valores baixos para 0.
         \item Conforme $\tau \to 0$, a probabilidade da palavra absolutamente mais provável se aproxima assintoticamente de 1.
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Amostragem por Temperatura — Exemplo}
+    \justifying
+
+    \vspace{0.2cm}
+
+    A função \textbf{softmax com temperatura} é definida por:
+
+    \[
+        \operatorname{softmax}_i\left(\frac{\mathbf{z}}{T}\right)
+        =
+        \frac{e^{z_i/T}}
+        {\displaystyle\sum_{j=1}^{K} e^{z_j/T}}
+    \]
+
+    \vspace{0.15cm}
+
+    Considere os valores obtidos por uma rede feedforward:
+    \[
+        z_1=12,\qquad z_2=13,\qquad z_3=4.
+    \]
+
+    \vspace{0.1cm}
+
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{c|ccc}
+        \hline
+        \textbf{Temperatura} & $P(z_1)$ & $P(z_2)$ & $P(z_3)$ \\
+        \hline
+        $T=0.1$ &
+        $4.54\times10^{-5}$ &
+        $0.9999546$ &
+        $8.19\times10^{-40}$ \\
+
+        $T=0.7$ &
+        $0.19332$ &
+        $0.80668$ &
+        $2.10\times10^{-6}$ \\
+
+        $T=1.0$ &
+        $0.26892$ &
+        $0.73099$ &
+        $9.02\times10^{-5}$ \\
+        \hline
+    \end{tabular}
+    \end{center}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
