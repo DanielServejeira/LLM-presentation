@@ -774,6 +774,405 @@ while w_i!= EOS:
     \[ 12 \times 96 \times 12288^2 \approx 175 \text{ bilhões de parâmetros.} \]
 \end{frame}
 
+\begin{frame}{Mecanismo de atenção da arquitetura Transformer}
+Na arquitetura transformer, um token é quebrado em três vetores: query, key e value:
+
+\begin{itemize}
+    \item \textbf{Query ($Q$):} representa o que o token atual está procurando.
+    \item \textbf{Key ($K$):} representa as características usadas para determinar
+          a relevância de cada token.
+    \item \textbf{Value ($V$):} contém a informação que será agregada ao resultado.
+\end{itemize}
+
+Os três vetores são obtidos pela multiplicação do vetor de representação
+do token por três matrizes de pesos, que são aprendidas durante o treinamento:
+
+$$
+    q = W_q x
+$$
+
+$$
+    k = W_k x
+$$
+
+$$
+    v = W_v x
+$$
+
+onde $x$ é o vetor de representação do token e
+$W_q$, $W_k$ e $W_v$ são matrizes de pesos aprendidas.
+
+
+\end{frame}
+
+\begin{frame}{Mecanismo de atenção da arquitetura Transformer}
+A função de atenção pode ser descrita como o mapeamento de um
+conjunto de queries, keys e values para um conjunto de representações de saída.
+
+\[
+    \mathrm{Attention}(Q,K,V)
+    =
+    \mathrm{softmax}
+    \left(
+    \frac{QK^T}{\sqrt{d_k}}
+    \right)V
+\]
+
+\begin{itemize}
+    \item $QK^T$: calcula a similaridade entre queries e keys.
+    \item $\sqrt{d_k}$: fator de escala que evita valores excessivamente grandes.
+    \item $\mathrm{softmax}$: transforma as similaridades em pesos de atenção.
+    \item $V$: combina os valores de acordo com esses pesos.
+\end{itemize}
+
+\end{frame}
+
+% ============================================================
+% Slide 1
+% ============================================================
+
+\begin{frame}{Exemplo: representações dos tokens}
+    Considere um contexto com dois tokens:
+
+    \[
+        \boxed{\text{Token}_1 \qquad \text{Token}_2}
+    \]
+
+    Suas representações são:
+
+    \[
+        x_1 =
+        \begin{bmatrix}
+            1\\
+            0
+        \end{bmatrix},
+        \qquad
+        x_2 =
+        \begin{bmatrix}
+            1\\
+            2
+        \end{bmatrix}
+    \]
+
+    Queremos calcular o \textbf{output do segundo token}.
+
+    \vspace{0.3cm}
+
+    Para isso, cada representação é projetada em três espaços diferentes:
+
+    \[
+        q_i = W_Qx_i,
+        \qquad
+        k_i = W_Kx_i,
+        \qquad
+        v_i = W_Vx_i
+    \]
+\end{frame}
+
+% ============================================================
+% Slide 2
+% ============================================================
+
+\begin{frame}{Exemplo: projeção em Q, K e V}
+    Considere as seguintes matrizes de pesos:
+
+    \[
+        W_Q =
+        \begin{bmatrix}
+            1 & 0\\
+            0 & 1
+        \end{bmatrix},
+        \qquad
+        W_K =
+        \begin{bmatrix}
+            1 & 1\\
+            0 & 1
+        \end{bmatrix},
+        \qquad
+        W_V =
+        \begin{bmatrix}
+            1 & 0\\
+            1 & 1
+        \end{bmatrix}
+    \]
+
+    Para o primeiro token:
+
+    \[
+        q_1 =
+        \begin{bmatrix}1\\0\end{bmatrix},
+        \quad
+        k_1 =
+        \begin{bmatrix}1\\1\end{bmatrix},
+        \quad
+        v_1 =
+        \begin{bmatrix}1\\1\end{bmatrix}
+    \]
+
+    Para o segundo token:
+
+    \[
+        q_2 =
+        \begin{bmatrix}1\\2\end{bmatrix},
+        \quad
+        k_2 =
+        \begin{bmatrix}3\\2\end{bmatrix},
+        \quad
+        v_2 =
+        \begin{bmatrix}1\\3\end{bmatrix}
+    \]
+\end{frame}
+
+% ============================================================
+% Slide 3
+% ============================================================
+
+\begin{frame}{Exemplo: cálculo dos scores de atenção}
+    Como estamos calculando o output do \textbf{segundo token},
+    utilizamos sua query:
+
+    \[
+        q_2 =
+        \begin{bmatrix}
+            1\\
+            2
+        \end{bmatrix}
+    \]
+
+    Ela é comparada com as keys dos tokens anteriores e do próprio token:
+
+    \[
+        q_2k_1^T =
+        \begin{bmatrix}1&2\end{bmatrix}
+        \begin{bmatrix}1\\1\end{bmatrix}
+        =3
+    \]
+
+    \[
+        q_2k_2^T =
+        \begin{bmatrix}1&2\end{bmatrix}
+        \begin{bmatrix}3\\2\end{bmatrix}
+        =7
+    \]
+
+    Portanto:
+
+    \[
+        q_2K^T =
+        \begin{bmatrix}
+            3 & 7
+        \end{bmatrix}
+    \]
+
+    \vspace{0.2cm}
+
+\end{frame}
+
+% ============================================================
+% Slide 4
+% ============================================================
+
+\begin{frame}{Exemplo: normalização dos scores}
+    A atenção utiliza o \textbf{Scaled Dot-Product Attention}:
+
+    \[
+        \mathrm{Attention}(Q,K,V)
+        =
+        \mathrm{softmax}
+        \left(
+            \frac{QK^T}{\sqrt{d_k}}
+        \right)V
+    \]
+
+    Como $d_k=2$:
+
+    \[
+        \frac{q_2K^T}{\sqrt{2}}
+        =
+        \begin{bmatrix}
+            \frac{3}{\sqrt{2}} &
+            \frac{7}{\sqrt{2}}
+        \end{bmatrix}
+    \]
+
+    Aplicando o softmax:
+
+    \[
+        \mathrm{softmax}
+        \left(
+            \begin{bmatrix}
+                2.12 & 4.95
+            \end{bmatrix}
+        \right)
+        \approx
+        \begin{bmatrix}
+            0.055 & 0.945
+        \end{bmatrix}
+    \]
+
+    Esses valores são os \textbf{pesos de atenção}.
+
+    \[
+        \boxed{
+            \text{Token}_1: 5.5\%
+            \qquad
+            \text{Token}_2: 94.5\%
+        }
+    \]
+
+\end{frame}
+
+% ============================================================
+% Slide 5
+% ============================================================
+
+\begin{frame}{Exemplo: cálculo do output}
+    Os pesos de atenção são utilizados para calcular uma
+    \textbf{soma ponderada dos values}:
+
+    \[
+        v_1 =
+        \begin{bmatrix}
+            1\\
+            1
+        \end{bmatrix},
+        \qquad
+        v_2 =
+        \begin{bmatrix}
+            1\\
+            3
+        \end{bmatrix}
+    \]
+
+    Portanto:
+
+    \[
+        \begin{aligned}
+            o_2
+    &=
+    0.055v_1 + 0.945v_2 \\[0.2cm]
+    &=
+    0.055
+    \begin{bmatrix}
+        1\\1
+    \end{bmatrix}
+    +
+    0.945
+    \begin{bmatrix}
+        1\\3
+    \end{bmatrix}
+    \\[0.2cm]
+    &\approx
+    \begin{bmatrix}
+        1\\
+        2.89
+    \end{bmatrix}
+        \end{aligned}
+    \]
+
+    \[
+        \boxed{
+            \text{Output do segundo token}
+            \approx
+            \begin{bmatrix}
+                1\\
+                2.89
+            \end{bmatrix}
+        }
+    \]
+
+\end{frame}
+
+% ============================================================
+% Slide 6
+% ============================================================
+
+\begin{frame}{O que aconteceu?}
+
+    Para calcular o output do segundo token:
+
+    \[
+        x_2
+        \xrightarrow{\;W_Q\;}
+        q_2
+    \]
+
+    \[
+        q_2
+        \xrightarrow{\;\;q_2K^T\;\;}
+        \text{scores}
+        \xrightarrow{\;\mathrm{softmax}\;}
+        \text{pesos}
+    \]
+
+    \[
+        \text{pesos}
+        \xrightarrow{\;\times V\;}
+        o_2
+    \]
+
+    \vspace{0.3cm}
+
+    Neste exemplo:
+
+    \begin{itemize}
+        \item o segundo token consulta as \textbf{keys} dos dois tokens;
+        \item o segundo token atribui $5.5\%$ de peso ao primeiro token;
+        \item atribui $94.5\%$ de peso ao próprio token;
+        \item o output é uma combinação ponderada dos respectivos
+            \textbf{values}.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Observações sobre o mecanismo de atenção}
+    Em \textit{self-attention}, cada token possui uma query, uma key e um value.
+
+    \begin{itemize}
+        \item A query de um token é utilizada para calcular \textbf{seu próprio output}.
+        \item A key e o value de cada token podem ser utilizados pelas
+            \textbf{queries de todos os tokens}.
+    \end{itemize}
+
+    Para uma sequência de $n$ tokens, é necessário calcular as
+    similaridades entre todas as queries e keys:
+
+    \[
+        QK^T \in \mathbb{R}^{n\times n}
+    \]
+
+    Portanto, o custo da atenção cresce quadraticamente com o tamanho
+    da sequência:
+
+    \[
+        \boxed{\mathcal{O}(n^2)}
+    \]
+
+\end{frame}
+
+\begin{frame}{Observações sobre o mecanismo de atenção}
+    Durante a geração autoregressiva, a cada novo token é necessário
+    considerar novamente o contexto anterior.
+
+    \vspace{0.3cm}
+
+    Isso é semelhante a redigir um texto em que, para escrever cada nova
+    palavra, fosse necessário \textbf{reler todo o texto escrito anteriormente}.
+
+    \[
+        \begin{array}{rcl}
+            \text{Lorem} &\rightarrow& \text{Lorem ipsum}\\
+            \text{Lorem ipsum} &\rightarrow& \text{Lorem ipsum dolor}\\
+            \text{Lorem ipsum dolor} &\rightarrow& \text{Lorem ipsum dolor sit}\\
+                                     &\vdots&
+        \end{array}
+    \]
+\end{frame}
+
+\begin{frame}{Cache KV}
+    
+\end{frame}
+
 \begin{frame}{O Gargalo do Cache KV}\justifying
     Durante a fase de pré-treinamento, calculamos a atenção matemática com eficiência em lotes paralelos massivos. Porém, isso falha na inferência, pois geramos tokens sequencialmente.
     \begin{itemize}
