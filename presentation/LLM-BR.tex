@@ -123,9 +123,9 @@
     \end{center}
 }
 \title{Grandes Modelos de Linguagem}
-\author[Exame de Qualificação]{\textbf{Alunos:} João Gabriel de Morais Bezerra e Daniel Henrique Peres Servejeira}%\\ \textbf{Orientador:} Prof. Dr. Cássio Machiaveli Oishi} 
+\author[Exame de Qualificação]{\textbf{Alunos:} Daniel Henrique Peres Servejeira, João Gabriel de Morais Bezerra e José Henrique Ioki Yamaoki}%\\ \textbf{Orientador:} Prof. Dr. Cássio Machiaveli Oishi} 
 \institute{Laboratório de Simulações Numéricas e Inteligência Artificial}
-\date{\today}
+\date{28 de setembro de 2026}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,6 +133,71 @@
     \titlepage{}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Hierarquia de NLPs}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlp-explain.jpeg}
+        \label{fig:nlp-explain}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLP}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlp-example.png}
+        \label{fig:nlp-example}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLP Técnica de vetorização - Bag of Words}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlp-vector.png}
+        \label{fig:nlp-vector}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLP Técnica de vetorização - TF-IDF (Term Frequency-Inverse Document Frequency)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlp-tfidf.jpeg}
+        \label{fig:nlp-tfidf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLP}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlu-topic-analysis.png}
+        \label{fig:nlu-topic-analysis}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLU}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlu-extract-summary.png}
+        \label{fig:nlu-extract-summary}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLU}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlu-extract-question.png}
+        \label{fig:nlu-extract-question}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{NLG}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/nlg.png}
+        \label{fig:nlg}
+    \end{figure}
+\end{frame}
+
 \section{Introdução}
 
 \begin{frame}{Modelos de linguagem}\justifying
@@ -251,7 +316,7 @@
     Um avanço monumental no processamento de linguagem natural é a constatação de que muitas tarefas cognitivas complexas podem ser reformuladas matematicamente como tarefas simples de prever palavras!
 \end{frame}
 
-\begin{frame}{Nesta aula: modelos apenas decodificadores}\justifying
+\begin{frame}{Modelos apenas decodificadores}\justifying
     \textbf{Modelos apenas decodificadores são comumente chamados de:}
     \begin{itemize}
         \item LLMs Causais
@@ -259,6 +324,15 @@
         \item LLMs da Esquerda para a Direita
     \end{itemize}
     Esses modelos funcionam estritamente prevendo palavras sequencialmente da esquerda para a direita, sendo totalmente incapazes de analisar o contexto futuro.
+\end{frame}
+
+\begin{frame}{Representação vetorial dos tokens}\justifying
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{pic/word_embeddings.jpeg}
+        \caption{Word Embeddings}
+        \label{fig:word_embeddings}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Geração Condicional}\justifying
@@ -325,6 +399,15 @@
     \begin{center}
         \huge \textbf{Amostragem para Geração de LLMs}
     \end{center}
+\end{frame}
+
+\begin{frame}{Transformer}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{pic/attention_is_all_you_need.jpg}
+        \caption{Paper apresentando a arquitetura transformers}
+        \label{fig:paper_transformers}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Decodificação e Amostragem}\justifying
@@ -469,7 +552,7 @@ while w_i!= EOS:
         \centering
         \includegraphics[width=0.5\linewidth]{pic/neural_network.png}
         \caption{Rede Neural Feedforward}
-        \label{fig:transformer_language_model_scheme}
+        \label{fig:feedforward-network}
     \end{figure}
 \end{frame}
 
